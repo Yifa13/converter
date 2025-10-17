@@ -1,0 +1,21 @@
+<h1>Temperature Converter</h1>
+
+<form [formGroup]="temperatureForm">
+  <div>
+    <label>Temperature:</label><br />
+    <input type="number" formControlName="temperature" />
+  </div>
+
+  <div>
+    <label>Unit:</label><br />
+    <select formControlName="unit">
+      <option value="celsius">Celsius ke Fahrenheit</option>
+      <option value="fahrenheit">Fahrenheit ke Celsius</option>
+    </select>
+  </div>
+
+  <div *ngIf="convertedTemperature$ | async as converted">
+    <label>Converted Temperature:</label><br />
+    <p>{{ converted | number:'1.2-2' }} {{ temperatureForm.get('unit')?.value === 'celsius' ? '°F' : '°C' }}</p>
+  </div>
+</form>
